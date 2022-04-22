@@ -1,65 +1,57 @@
-const express = require('express')
+const express = require('express');
+const { default: mongoose } = require('mongoose');
+const Product = require('./models/Product.models');
 const app = express()
+const drinks = require("./bin/seeds.js")
+
 
 app.use(express.static('public'))
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "hbs");
 
-
-// app.get(path, code(object representing request, response that we will send, helps us control application flow))
-// app.get(path, code(request, response, next))
-// app.get(path, code(req, res, next))
-
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/views/home.html")
+   
+    res.render("home.hbs")
 })
 
-
-
-
-
 app.get('/vodka', (req, res) => {
-
-    // res.sendFile(__dirname + '/views/product-vodka.html')
-    // res.render("view", info)
-    const data = {
-        title: "Vodka",
-        price: '20',
-        imgFile: "vodka.jpeg",
-        stores: ['Online ', 'Amsterdam ', 'Berlin ', 'Paris '],
-    }
-    res.render("product", data)
+    Product.findOne({title: 'Vodka'})
+    .then( (productDetails) => {
+    res.render("product", productDetails)
+    })
+    .catch( (err) =>{
+        console.log(err)
+    })
 })
 
 app.get('/gin', (req, res) => {
-    const data = {
-        title: "Brighton Gin",
-        price: 30,
-        imgFile: "brighton-gin.jpeg",
-    } 
-    res.render('product', data)
+    Product.findOne({title: 'Brighton Gin'})
+    .then( (productDetails) => {
+    res.render("product", productDetails)
+    })
+    .catch( (err) =>{
+        console.log(err)
+    })
 })
 
 app.get('/whisky', (req, res) => {
-    const data = {
-        title: "Jack Daniels Whisky",
-        price: 25,
-        // imgFile: 'whisky.jpeg',
-        stores: ['Online', 'Amsterdam', 'Berlin', 'Madrid'],
-
-    }
-
-    res.render('product', data)
+    Product.findOne({title: 'Jack Daniels Whisky'})
+    .then( (productDetails) => {
+    res.render("product", productDetails)
+    })
+    .catch( (err) =>{
+        console.log(err)
+    })
 })
 
 
 app.get('/about', (req, res) => {
-    res.sendFile(__dirname + "/views/about.html")
+    res.render("about.hbs")
 })
 
 app.get('/contact', (req, res, next) => {
-    res.sendFile(__dirname + '/views/contact.html')
+    res.render("contact.hbs")
 })
 
 app.listen(3000, () => {
