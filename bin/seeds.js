@@ -10,28 +10,28 @@ mongoose
 
 const products = [
     {
-            title: "Vodka",
-            price: '20',
-            imgSrc: "vodka.jpeg",
-            stores: ['Online', 'Amsterdam', 'Berlin'],
-        },
+        title: "vodka",
+        price: '20',
+        imgSrc: "vodka.jpeg",
+        stores: ['Online', 'Amsterdam', 'Berlin'],
+    },
     {
-            title: "Brighton Gin",
-            price: 30,
-            imgSrc: "brighton-gin.jpeg",
-        },
- {
-            title: "Jack Daniels Whisky",
-            price: 25,
-            imgSrc: 'whisky.jpeg',
-            stores: ['Online', 'Amsterdam'],
-        }
+        title: "gin",
+        price: 30,
+        imgSrc: "brighton-gin.jpeg",
+    },
+    {
+        title: "whisky",
+        price: 25,
+        imgSrc: 'whisky.jpeg',
+        stores: ['Online', 'Amsterdam'],
+    }
 ]
 
-Product.insertMany(products)
-    .then( response => {
-        console.log(response.length, "products created")
-    })
-    .catch((error)=>{
-        console.log("error bitch", error)
-    })
+// Product.insertMany(products)
+//     .then( response => {
+//         console.log(response.length, "products created")
+//     })
+//     .catch((error)=>{
+//         console.log("error bitch", error)
+//     })

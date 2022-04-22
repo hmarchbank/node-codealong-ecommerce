@@ -15,36 +15,44 @@ app.get('/', (req, res) => {
     res.render("home.hbs")
 })
 
-app.get('/vodka', (req, res) => {
-    Product.findOne({title: 'Vodka'})
+// app.get('/vodka', (req, res) => {
+//     Product.findOne({title: 'Vodka'})
+//     .then( (productDetails) => {
+//     res.render("product", productDetails)
+//     })
+//     .catch( (err) =>{
+//         console.log(err)
+//     })
+// })
+
+// app.get('/gin', (req, res) => {
+//     Product.findOne({title: 'Brighton Gin'})
+//     .then( (productDetails) => {
+//     res.render("product", productDetails)
+//     })
+//     .catch( (err) =>{
+//         console.log(err)
+//     })
+// })
+
+// app.get('/whisky', (req, res) => {
+//     Product.findOne({title: 'Jack Daniels Whisky'})
+//     .then( (productDetails) => {
+//     res.render("product", productDetails)
+//     })
+//     .catch( (err) =>{
+//         console.log(err)
+//     })
+// })
+app.get("/products/:productId", (req, res, next) => {
+    Product.findById({_id: req.params.productId})
     .then( (productDetails) => {
-    res.render("product", productDetails)
+        res.render("product", productDetails)
     })
     .catch( (err) =>{
         console.log(err)
     })
 })
-
-app.get('/gin', (req, res) => {
-    Product.findOne({title: 'Brighton Gin'})
-    .then( (productDetails) => {
-    res.render("product", productDetails)
-    })
-    .catch( (err) =>{
-        console.log(err)
-    })
-})
-
-app.get('/whisky', (req, res) => {
-    Product.findOne({title: 'Jack Daniels Whisky'})
-    .then( (productDetails) => {
-    res.render("product", productDetails)
-    })
-    .catch( (err) =>{
-        console.log(err)
-    })
-})
-
 
 app.get('/about', (req, res) => {
     res.render("about.hbs")
